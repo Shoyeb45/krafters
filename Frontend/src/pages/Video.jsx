@@ -9,40 +9,52 @@ import { DocumentContext } from '../context/Provider';
 
 export default function Video() {
     const navigate = useNavigate();
-    const { backendUrl } = useContext(DocumentContext);
-    const { id } = useParams(); // This should be the secure_url from your navigation
+    const { backendUrl, videoUrl } = useContext(DocumentContext);
     const [lecture, setLecture] = useState(null);
-
+    const [videoId, setVideoId] = useState("");
+    const [islText, setIslText] = useState(undefined);
+    
     // Function to extract YouTube video ID from URL
     const extractYouTubeId = (url) => {
+        console.log(url);
+        
         if (!url) return null;
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
         const match = url.match(regExp);
         return (match && match[2].length === 11) ? match[2] : null;
     };
 
-    const fetchCourse = async() => {
-        try {
-            // If id is the secure_url, you might need to find the lecture by URL
-            // Or adjust your routing to pass the lecture ID instead
-            const response = await axios.get(`${backendUrl}/api/course/lectures/${id}`);
-            console.log(response);
-            // Assuming the response contains the lecture data
-            setLecture(response.data.lecture);
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     useEffect(() => {
-        fetchCourse();
-    }, [id]);
+        console.log(videoUrl);
+        (async () => {
+            try {
+                const response = await fetch(`http://localhost:8000/api/video_to_text/?url=${videoUrl}`, 
+                    {
+                        method: "GET"
+                    }, {
+                        "Content-type": "application/json"
+                    }
+                )
+
+                if (!response.ok) {
+                    console.error("Failed to get the ISL text from the youtube video\n----server error----");
+                    return;
+                }
+                const data = await response.json();
+                console.table({ data });
+                setIslText(data.isl_format_text);
+
+            } catch (error) {
+                console.error("Error while getting the text from youtube video\n", error);
+            }
+        })();
+        setVideoId(extractYouTubeId(videoUrl));
+    }, []);
 
     // Extract YouTube video ID
-    const videoId = lecture ? extractYouTubeId(lecture.secure_url) : null;
-
     return (
-        <div className="w-full flex flex-col justify-center items-center gap-2 px-20">
+        <div className="w-full flex mt-10 flex-col justify-center items-center gap-2 px-20">
             <div className='w-full flex items-center justify-between py-4'>
                 <button 
                     className='flex items-center gap-1 text-lg font-semibold cursor-pointer text-gray-600 hover:text-gray-800 transition-colors duration-200'
@@ -52,10 +64,18 @@ export default function Video() {
                 </button>
             </div>
             <div className='w-full flex gap-2'>
-                <VideoPlayerSection videoId={videoId} />
-                <SignLanguageSection />
+                {islText ? <VideoPlayerSection videoId={videoId} />:<LoaderForVideo />}
+                <SignLanguageSection islText={islText}/>
             </div>
             <CommentsSection />
         </div>
     );
+}
+
+function LoaderForVideo() {
+  return (
+    <div className="flex justify-center items-center w-full h-90 bg-white rounded-xl">
+      <div className="w-10 h-10 border-4 border-red-700 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
 }

@@ -11,7 +11,7 @@ class YouTubeProcessor:
     def __init__(self):
         # Configure yt-dlp with FFmpeg path
         self.ydl_opts = {
-            'cookiefile': '/home/ubuntu/cookies/youtube_cookies.txt',
+            # 'cookiefile': '/home/ubuntu/cookies/youtube_cookies.txt',
             'format': 'bestaudio/best',
             'outtmpl': str(settings.CACHE_DIR / '%(id)s.%(ext)s'),
             'postprocessors': [{

@@ -9,7 +9,8 @@ const authAdmin = async (req, res, next) => {
     }
     
     const decoded_token = jwt.verify(token, process.env.JWT_SECRET);
-
+    console.log(decoded_token);
+    
     if (
       decoded_token !==
       process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD

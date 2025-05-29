@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import { User } from 'lucide-react';
 import { ThreeDModelForASL } from '../ThreeDModelForASL';
-import { div } from 'three/tsl';
 
-const SignLanguageSection = () => {
+const SignLanguageSection = ({ islText }) => {
   const [enabled, setEnabled] = useState(false);
 
   return (
-    <div className="w-lg bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-      <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+    <div className="w-lg bg-white rounded-xl shadow-lg p-6 ">
+      {/* <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
         <User className="w-5 h-5 mr-2 text-pwpurple" />
         Sign Language
-      </h3>
+      </h3> */}
 
-      <div className="aspect-video bg-gradient-to-br from-purple-100 to-gray-100 rounded-lg flex items-center justify-center mb-4">
+      <div className="aspect-video rounded-lg flex items-center justify-center mb-4">
         {enabled ? (
           <div>
-          <ThreeDModelForASL />
+            <ThreeDModelForASL islText={islText}/>
           </div>
         ) : (
           <div className="text-center">
@@ -28,9 +27,11 @@ const SignLanguageSection = () => {
 
       <button
         onClick={() => setEnabled(!enabled)}
-        className="w-full bg-pwpurple hover:bg-violet-600 text-white py-2 px-4 rounded-lg transition-colors duration-200"
+        className={`w-full py-2 px-4 rounded-lg transition-colors duration-200 
+          ${!islText ? 'bg-violet-300 cursor-not-allowed' : 'bg-pwpurple hover:bg-violet-600 text-white'}`}
+        disabled={!islText}
       >
-        {enabled ? 'Disable Sign Language' : 'Enable Sign Language'}
+        {enabled ? 'Hide Sign Language' : 'Show Sign Language'}
       </button>
     </div>
   );

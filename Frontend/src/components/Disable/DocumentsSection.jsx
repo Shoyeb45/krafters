@@ -796,3 +796,5 @@ const DocumentsSection = () => {
     </div>
   );
 };
+
+export default DocumentsSection;

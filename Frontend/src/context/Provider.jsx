@@ -8,12 +8,13 @@ export const DocumentContext = createContext();
 export const DocumentProvider = ({ children }) => {
   const [token, setToken] = useState("");
   const [isAuthVisible, setIsAuthVisible] = useState(false); 
-  const backendUrl = "https://amanrajgupta.me";
+  const backendUrl = "http://localhost:4000";
   const [isOpenUploadBox, setIsOpenUploadBox] = useState(true);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [documentSummary, setDocumentSummary] = useState("");
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
+  const [videoUrl, setVideoUrl] = useState("");
 
 const getCourses = async () => {
   try {
@@ -64,6 +65,8 @@ const getCourses = async () => {
     getCourses,
     loading,
     setLoading,
+    videoUrl,
+    setVideoUrl
   };
 
   return (

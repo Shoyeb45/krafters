@@ -4,6 +4,7 @@ from pathlib import Path
 from app.utils.processor import FileProcessor, YouTubeProcessor
 from app.models.schemas import VideoRequest
 from app.config.video_to_text_config import settings 
+from app.utils.text_processor import process_text_to_isl
 import logging
 
 logger = logging.getLogger(__name__)
@@ -23,9 +24,11 @@ async def video_to_text_using_url(
         # file_processor = FileProcessor()
         
         transcript = processor.process_youtube(url)
+        transcript = transcript.strip()
+        transcript = process_text_to_isl(transcript)
         
         return {
-            "transcript": transcript,
+            "isl_format_text": transcript,
             "ok": True
         }
     except Exception as e:

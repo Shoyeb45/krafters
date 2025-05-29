@@ -21,7 +21,7 @@ import Lectures from "./pages/Lectures.jsx";
 const App = () => {
   const { isAuthVisible, setIsAuthVisible } = useContext(DocumentContext);
   const location = useLocation();
-  const hideNavbarPaths = ["/TestSequence",'/TestInstructions', '/disable/videos', '/disable/notes','/dashboard', '/disable/quizzes'];
+  const hideNavbarPaths = ["/TestSequence",'/TestInstructions', '/batch/videos', '/batch/notes','/dashboard', '/batch/quizzes'];
   return (
     <>
       <ToastContainer />
@@ -40,7 +40,7 @@ const App = () => {
             <Route path="/testInstructions" element={<TestInstructions />} />
             <Route path="/testSequence" element={<TestSequence />} />
 
-            <Route path="/batch/videos/:id" element={<Video />} />
+            <Route path="/batch/video" element={<Video />} />
             <Route path="/batch/notes" element={<Notes />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>

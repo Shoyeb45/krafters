@@ -3,7 +3,6 @@ import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { DocumentContext } from "../../context/Provider";
-import { useNavigate } from "react-router-dom";
 
 const Auth = ({ isAuthVisible, setIsAuthVisible }) => {
   const [activeTab, setActiveTab] = useState("login");
@@ -76,9 +75,9 @@ const LoginForm = ({ setActiveTab, hideAuth }) => {
       
       hideAuth(); // Hide auth modal
       navigate("/dashboard")
-      // Remove window.location.reload() to avoid page refresh
     } catch (error) {
       toast.error("Failed to Log In");
+      console.error("Failed while loggin in\n", error);
     }
   };
 

@@ -82,6 +82,19 @@ export default function WrongWordDetectTest({ onComplete }) {
   let correct = 0;
   let total = para.text.length;
 
+  // Check if the user selected any words for this question
+  let hasAttempted = false;
+  para.text.forEach((wordObj, idx) => {
+    const key = `${para.id}-${idx}`;
+    if (selected[key]) {
+      hasAttempted = true;
+    }
+  });
+
+  if (!hasAttempted) {
+    return 0; // No attempt, no score
+  }
+
   para.text.forEach((wordObj, idx) => {
     const key = `${para.id}-${idx}`;
     const isSelected = selected[key];
@@ -103,9 +116,14 @@ export default function WrongWordDetectTest({ onComplete }) {
   });
 
   // Normalize the score to a percentage between 0–100
-  return Math.max(0, Math.round((correct / total) * 100));
-};
+  if(correct<=0){
+    return 0;
+  }
+  else{
 
+    return Math.max(0, Math.round((correct / total) * 100));
+  }
+};
 
   const handleSubmit = () => {
     const score = calculateScore();

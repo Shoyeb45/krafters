@@ -2,17 +2,15 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import * as THREE from "three";
 // Import GLTFLoader for loading 3D models (you'll need to add this to your project)
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-// Import your default pose function
-import { defaultPose } from "../animation/defaultPose";
-
+import { Play } from "lucide-react";
 /**
  * 3D model which will render hand moves using Three.js for ASL/ISL translation
  * Converts text input into sign language animations using a 3D avatar
  */
 export function ThreeDModelForASL({ islText }) {
   // State management for text input and UI
-  const [text, setText] = useState(" hi how are you");
-  const [speed, setSpeed] = useState(1.0);
+  const [text, setText] = useState("");
+  const [speed, setSpeed] = useState(3.0);
   const [islStructure, setIslStructure] = useState("");
   const [processedText, setProcessedText] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -427,6 +425,7 @@ export function ThreeDModelForASL({ islText }) {
    */
   const animate = useCallback(() => {
     // Render the scene
+    
     if (sceneRef.current && cameraRef.current && rendererRef.current) {
       rendererRef.current.render(sceneRef.current, cameraRef.current);
     }
@@ -464,6 +463,7 @@ export function ThreeDModelForASL({ islText }) {
    */
   const processAnimation = useCallback((inputText) => {
     if (!inputText) return;
+    console.log("Process Animation started....\n", inputText);
 
     // Convert text to uppercase and replace number words with digits
     const processedText = inputText
@@ -540,19 +540,20 @@ export function ThreeDModelForASL({ islText }) {
       setIsProcessing(true);
 
       try {
-        let response = await fetch("http://localhost:8000/api/save_text", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            text: inputText,
-          }),
-        });
-        const data = await response.json();
+        // let response = await fetch("http://localhost:8000/api/save_text", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({
+        //     text: inputText,
+        //   }),
+        // });
+        // const data = await response.json();
 
-        setIslStructure(data.isl_structure);
-        processAnimation(data.isl_structure);
+        // setIslStructure(data.isl_structure);
+        // processAnimation(data.isl_structure);
+        processAnimation(inputText);
       } catch (error) {
         console.error("Processing error:", error);
         setIslStructure("Error processing text");
@@ -562,23 +563,6 @@ export function ThreeDModelForASL({ islText }) {
     },
     [processAnimation]
   );
-
-  /**
-   * Handle text submission for ASL conversion
-   */
-  const handleTextSubmit = useCallback(() => {
-    if (text.trim()) {
-      sendTextForProcessing(text.trim());
-    }
-  }, [text, sendTextForProcessing]);
-
-  /**
-   * Handle speed slider changes
-   */
-  const handleSpeedChange = useCallback((newSpeed) => {
-    setSpeed(newSpeed);
-    animationStateRef.current.speedMultiplier = newSpeed;
-  }, []);
 
   /**
    * Handle window resize for responsive 3D viewport
@@ -663,6 +647,7 @@ export function ThreeDModelForASL({ islText }) {
 
     initialize();
 
+
     // Add resize listener
     window.addEventListener("resize", handleResize);
 
@@ -686,22 +671,27 @@ export function ThreeDModelForASL({ islText }) {
     };
   }, [init3DSystem, animate, handleResize]);
 
+  function animateIsl(e) {
+    if (islText) {
+      processAnimation(islText);
+    }
+  }
   return (
-    <div className="asl-3d-container">
-      {/* Input Section */}
-
-      {/* Animation Section */}
+    <div className="asl-3d-container relative">
       <div className="animation-section">
-        <h2>Sign Language Animation</h2>
+        <button 
+          className={"p-2 absolute z-2  text-white left-93 -top-2 bg-pwpurple rounded-full"}
+          onClick={animateIsl}
+        >
+          <Play />
+        </button>
 
-        {/* 3D Animation Container */}
         <div
           ref={animationContainerRef}
           className="animation-container"
           style={{
             width: "400px",
             height: "300px",
-            border: "2px solid #ddd",
             position: "relative",
           }}
         ></div>

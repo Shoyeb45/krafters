@@ -14,7 +14,8 @@ const Dashboard = () => {
             try {
                 console.log('Fetching user profile :');
                 setLoading(true);
-                const response = await fetch('https://amanrajgupta.me/api/user/get-profile', {
+
+                const response = await fetch('http://localhost:4000/api/user/get-profile', {
                     method: 'GET', // Changed to POST as per your API
                     headers: {
                         'Content-Type': 'application/json',
@@ -122,7 +123,7 @@ const Dashboard = () => {
                 formData.append('image', selectedImageFile);
             }
 
-            const response = await fetch('https://amanrajgupta.me/api/user/edit-user', {
+            const response = await fetch('http://localhost:4000/api/user/edit-user', {
                 method: 'POST',
                 headers: {
                     // Don't set Content-Type for FormData, browser will set it automatically with boundary
