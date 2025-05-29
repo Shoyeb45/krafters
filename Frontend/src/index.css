@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #002B6B;
+    --color-secondary: #414D60;
+    --color-blue: #0066FF;
+    --color-pwpurple: #5A4BDA;
+}
+
+@font-face {
+    font-family: 'horizon';
+    src: url('/assets/horizon.otf') format('openType');
+    font-style: normal;
+}
+
+
+.font-dyslexia {
+    font-family: 'OpenDyslexic', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+    font-weight: 600;
+  }
+  

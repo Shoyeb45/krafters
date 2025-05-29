@@ -1,0 +1,29 @@
+[project]
+name = "ml-backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "en-core-web-sm",
+    "fastapi>=0.115.12",
+    "gtts>=2.5.4",
+    "jinja2>=3.1.6",
+    "nltk>=3.9.1",
+    "openai>=1.82.0",
+    "openai-whisper>=20240930",
+    "pdf2image>=1.17.0",
+    "pydantic>=2.11.5",
+    "pymongo>=4.13.0",
+    "pymupdf>=1.26.0",
+    "pytesseract>=0.3.13",
+    "python-dotenv>=1.1.0",
+    "python-multipart>=0.0.20",
+    "spacy>=3.8.7",
+    "starlette>=0.46.2",
+    "uvicorn>=0.34.2",
+    "yt-dlp>=2025.5.22",
+]
+
+[tool.uv.sources]
+en-core-web-sm = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl" }
