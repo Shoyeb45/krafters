@@ -30,13 +30,12 @@ export default function Video() {
         (async () => {
             try {
                 console.log(mlBackendUrl);
-                const response = await fetch(`https://amangupta.live/api/video_to_text/?url=${videoUrl}`, 
-                    {
-                        method: "GET"
-                    }, {
-                        "Content-type": "application/json"
+                const response = await fetch(`https://amangupta.live/api/video_to_text/?url=${videoUrl}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
                     }
-                )
+                });
 
                 if (!response.ok) {
                     console.error("Failed to get the ISL text from the youtube video\n----server error----");
