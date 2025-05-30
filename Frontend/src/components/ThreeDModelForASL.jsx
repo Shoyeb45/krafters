@@ -8,6 +8,9 @@ import { Play } from "lucide-react";
  * Converts text input into sign language animations using a 3D avatar
  */
 export function ThreeDModelForASL({ islText }) {
+
+  console.log("[3JS] Isl text in ThreeDModelForASL : " + islText);
+  
   // State management for text input and UI
   const [text, setText] = useState("");
   const [speed, setSpeed] = useState(3.0);
@@ -465,7 +468,7 @@ export function ThreeDModelForASL({ islText }) {
     console.info("[3JS]Process Animation Called...");
 
     if (inputText === "") return;
-    
+
     console.log("Process Animation started....\n", inputText);
 
     // Convert text to uppercase and replace number words with digits
