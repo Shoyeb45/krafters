@@ -659,7 +659,9 @@ export function ThreeDModelForASL({ islText }) {
   }, [init3DSystem, animate, handleResize]);
 
   function animateIsl(e) {
-    processAnimation(islText);
+    if (islText) {
+      processAnimation(islText);
+    }
   }
   return (
     <div className="asl-3d-container relative">
