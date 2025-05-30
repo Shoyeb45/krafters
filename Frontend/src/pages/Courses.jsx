@@ -16,6 +16,7 @@ import {
   UsersIcon,
   WifiIcon,
 } from "@heroicons/react/24/outline";
+import {Notebook} from 'lucide-react'
 import { useContext, useEffect, useState } from "react";
 import { DocumentContext } from "../context/Provider";
 import axios from "axios";
@@ -26,6 +27,7 @@ const Sidebar = () => {
     { icon: HomeIcon, label: "Home", active: false },
     { icon: BookOpenIcon, label: "Study", active: true },
     { icon: RectangleStackIcon, label: "Batches", active: false },
+    { icon: Notebook, label: "Note Mate", active: false ,isNew: true},
     { icon: WifiIcon, label: "Offline", active: false },
     { icon: BoltIcon, label: "Power Batch", active: false },
     { icon: ShoppingCartIcon, label: "PW Store", active: false },
@@ -37,6 +39,7 @@ const Sidebar = () => {
     { icon: GiftIcon, label: "Disha", active: false, isNew: true },
     { icon: UsersIcon, label: "Become Our Partner", active: false },
   ];
+  const navigate = useNavigate();
 
   return (
     <div className="w-64 bg-white border-r border-gray-200 h-screen flex flex-col flex-shrink-0">
@@ -55,6 +58,7 @@ const Sidebar = () => {
           return (
             <div
               key={index}
+              onClick={()=> navigate('/batch/notes')}
               className={`flex items-center px-4 py-3 mx-2 rounded-lg cursor-pointer transition-colors ${
                 item.active
                   ? "bg-blue-50 text-blue-600 border-l-4 border-blue-600"
@@ -62,7 +66,7 @@ const Sidebar = () => {
               }`}
             >
               <Icon className="w-5 h-5" />
-              <span className="ml-3 font-medium">{item.label}</span>
+              <span className="ml-3 font-medium" >{item.label}</span>
               {item.isNew && (
                 <span className="ml-auto bg-orange-400 text-white text-xs px-2 py-1 rounded">
                   NEW
