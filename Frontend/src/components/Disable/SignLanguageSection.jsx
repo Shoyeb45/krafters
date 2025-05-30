@@ -28,8 +28,8 @@ const SignLanguageSection = ({ islText }) => {
       <button
         onClick={() => setEnabled(!enabled)}
         className={`w-full py-2 px-4 rounded-lg transition-colors duration-200 
-          ${!islText ? 'bg-violet-300 cursor-not-allowed' : 'bg-pwpurple hover:bg-violet-600 text-white'}`}
-        disabled={!islText}
+          ${islText === "" ? 'bg-violet-300 cursor-not-allowed' : 'bg-pwpurple hover:bg-violet-600 text-white'}`}
+        disabled={islText === ""}
       >
         {enabled ? 'Hide Sign Language' : 'Show Sign Language'}
       </button>

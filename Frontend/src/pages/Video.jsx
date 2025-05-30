@@ -8,12 +8,11 @@ import axios from 'axios';
 import { DocumentContext } from '../context/Provider';
 
 export default function Video() {
-    const navigate = useNavigate();
-    const { backendUrl, videoUrl, mlBackendUrl } = useContext(DocumentContext);
-    const [lecture, setLecture] = useState(null);
+    const { videoUrl, mlBackendUrl } = useContext(DocumentContext);
     const [videoId, setVideoId] = useState("");
-    const [islText, setIslText] = useState(undefined);
+    const [islText, setIslText] = useState("");
     
+    console.table({ islText });    
     // Function to extract YouTube video ID from URL
     const extractYouTubeId = (url) => {
         console.log(url);
@@ -64,7 +63,7 @@ export default function Video() {
                 </button>
             </div>
             <div className='w-full flex gap-2'>
-                {islText ? <VideoPlayerSection videoId={videoId} />:<LoaderForVideo />}
+                {islText !== "" ? <VideoPlayerSection videoId={videoId} />:<LoaderForVideo />}
                 <SignLanguageSection islText={islText}/>
             </div>
             <CommentsSection />
