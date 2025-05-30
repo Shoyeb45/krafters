@@ -462,7 +462,10 @@ export function ThreeDModelForASL({ islText }) {
    * Process text input and generate sign language animations
    */
   const processAnimation = useCallback((inputText) => {
+    console.info("[3JS]Process Animation Called...");
+
     if (inputText === "") return;
+    
     console.log("Process Animation started....\n", inputText);
 
     // Convert text to uppercase and replace number words with digits
@@ -659,7 +662,9 @@ export function ThreeDModelForASL({ islText }) {
   }, [init3DSystem, animate, handleResize]);
 
   function animateIsl(e) {
-    if (islText) {
+    console.info(`[3JS] Called Animate ISL.... + ${islText}`);
+    if (islText !== "") {
+      console.info("ISL Text", islText);
       processAnimation(islText);
     }
   }
