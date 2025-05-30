@@ -170,8 +170,8 @@ const MainContent = ({ onCourseSelect }) => {
             </button>
           </div>
 
-          <div className="w-full h-[200px] bg-amber-100">
-            {/* <img src='' alt='' /> */}
+          <div className="w-full h-[180px] relative overflow-hidden">
+            <img src='assets/banner.jpg' alt='' className="absolute top-0 left-0"/>
           </div>
 
           <div className="flex justify-around items-center gap-6 mt-2 mb-4">

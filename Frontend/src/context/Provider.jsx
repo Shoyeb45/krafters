@@ -8,8 +8,8 @@ export const DocumentContext = createContext();
 export const DocumentProvider = ({ children }) => {
   const [token, setToken] = useState("");
   const [isAuthVisible, setIsAuthVisible] = useState(false); 
-  const backendUrl = "http://amanrajgupta.me";
-  const mlBackendUrl = "http://amangupta.live";
+  const backendUrl = "https://amanrajgupta.me";
+  const mlBackendUrl = "https://amangupta.live";
   const [isOpenUploadBox, setIsOpenUploadBox] = useState(true);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [documentSummary, setDocumentSummary] = useState("");
