@@ -29,7 +29,7 @@ export default function Video() {
         (async () => {
             try {
                 console.log(mlBackendUrl);
-                const response = await fetch(`https://amangupta.live/api/video_to_text/?url=${videoUrl}`, {
+                const response = await fetch(mlBackendUrl + `/api/video_to_text/?url=${videoUrl}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json"

@@ -17,6 +17,8 @@ import TestSequence from "./pages/TestSequence";
 import { useLocation } from "react-router-dom";
 import Dashboard from "./components/UserDashboard.jsx";
 import Lectures from "./pages/Lectures.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
+import Contact from "./pages/ContactUs.jsx";
 
 const App = () => {
   const { isAuthVisible, setIsAuthVisible } = useContext(DocumentContext);
@@ -35,6 +37,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/batch/:id" element={<Lectures />} />
             {/* <Route path="/disable/quizzes" element={<Quizzes />} /> */}
             <Route path="/testInstructions" element={<TestInstructions />} />
