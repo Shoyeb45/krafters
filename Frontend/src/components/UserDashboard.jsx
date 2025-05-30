@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { User, Edit3, Camera, Phone, Mail, MapPin, Calendar, Award, Brain, Heart, Loader, AlertCircle } from 'lucide-react';
+import { DocumentContext } from '../context/Provider';
 
 const Dashboard = () => {
     const [user, setUser] = useState(null);
@@ -7,7 +8,7 @@ const Dashboard = () => {
     const [error, setError] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [imagePreview, setImagePreview] = useState("");
-
+    const { backendUrl } = useContext(DocumentContext);
     // Fetch user profile data
     useEffect(() => {
         const fetchUserProfile = async () => {
@@ -15,7 +16,7 @@ const Dashboard = () => {
                 console.log('Fetching user profile :');
                 setLoading(true);
 
-                const response = await fetch('http://localhost:4000/api/user/get-profile', {
+                const response = await fetch(`${backendUrl}/api/user/get-profile`, {
                     method: 'GET', // Changed to POST as per your API
                     headers: {
                         'Content-Type': 'application/json',
@@ -123,7 +124,7 @@ const Dashboard = () => {
                 formData.append('image', selectedImageFile);
             }
 
-            const response = await fetch('http://localhost:4000/api/user/edit-user', {
+            const response = await fetch(backendUrl + '/api/user/edit-user', {
                 method: 'POST',
                 headers: {
                     // Don't set Content-Type for FormData, browser will set it automatically with boundary

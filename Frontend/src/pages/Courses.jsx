@@ -89,11 +89,11 @@ const MainContent = ({ onCourseSelect }) => {
   const navigate = useNavigate();
   const { getCourses } = useContext(DocumentContext);
   const [batches, setBatches] = useState([]);
-
+  const { backendUrl } = useContext(DocumentContext);
   useEffect(() => {
         (async () => {
             try {
-                const res = await axios.get("http://localhost:4000/api/course/get-all");
+                const res = await axios.get(backendUrl + "/api/course/get-all");
                 console.log(res.data);
                 setBatches(res.data.courses);
             } catch (error) {

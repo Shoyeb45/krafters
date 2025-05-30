@@ -9,7 +9,7 @@ import { DocumentContext } from '../context/Provider';
 
 export default function Video() {
     const navigate = useNavigate();
-    const { backendUrl, videoUrl } = useContext(DocumentContext);
+    const { backendUrl, videoUrl, mlBackendUrl } = useContext(DocumentContext);
     const [lecture, setLecture] = useState(null);
     const [videoId, setVideoId] = useState("");
     const [islText, setIslText] = useState(undefined);
@@ -29,7 +29,7 @@ export default function Video() {
         console.log(videoUrl);
         (async () => {
             try {
-                const response = await fetch(`http://localhost:8000/api/video_to_text/?url=${videoUrl}`, 
+                const response = await fetch(mlBackendUrl + `/api/video_to_text/?url=${videoUrl}`, 
                     {
                         method: "GET"
                     }, {

@@ -540,19 +540,6 @@ export function ThreeDModelForASL({ islText }) {
       setIsProcessing(true);
 
       try {
-        // let response = await fetch("http://localhost:8000/api/save_text", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({
-        //     text: inputText,
-        //   }),
-        // });
-        // const data = await response.json();
-
-        // setIslStructure(data.isl_structure);
-        // processAnimation(data.isl_structure);
         processAnimation(inputText);
       } catch (error) {
         console.error("Processing error:", error);
