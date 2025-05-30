@@ -63,14 +63,32 @@ export default function Video() {
                 </button>
             </div>
             <div className='w-full flex gap-2'>
-                {islText !== "" ? <VideoPlayerSection videoId={videoId} />:<LoaderForVideo />}
-                <SignLanguageSection islText={islText}/>
+                <VideoSection videoId={videoId} islText={islText}/>
             </div>
             <CommentsSection />
         </div>
     );
 }
 
+function VideoSection({ videoId, islText}) {
+
+    
+    return (
+        <div className='w-full flex gap-2'>
+            {islText !== "" ? (
+                <>
+                    <VideoPlayerSection videoId={videoId} />
+                    <SignLanguageSection islText={islText} />
+                </>
+                ):(
+                    <>
+                        <LoaderForVideo />
+                        <SignLanguageSection islText={islText} />
+                    </>
+                )}
+        </div>
+    )
+}
 function LoaderForVideo() {
   return (
     <div className="flex justify-center items-center w-full h-90 bg-white rounded-xl">
