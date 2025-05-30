@@ -170,7 +170,7 @@ export function ThreeDModelForASL({ islText }) {
     for (const word of commonWords) {
       try {
         // Dynamic import of actual word animation modules
-        const moduleObj = await import(`../animation/words/${word}.js`);
+        const moduleObj = await import(`../animation/Words/${word}.js`);
 
         // Extract animation function using the same logic as original code
         const animationFunction = getAnimationFunction(moduleObj, word);
