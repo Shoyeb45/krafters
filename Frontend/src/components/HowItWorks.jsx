@@ -53,7 +53,7 @@ const HowItWorks = () => {
                         <img src={image3} alt="How it works" className="rounded-2xl shadow-lg" />
                         <div className=''>
                             <h1 className='text-xl text-blue'>10k+</h1>
-                            <p className='text-sm text-neutral-600'>Job Seekers</p>
+                            {/* <p className='text-sm text-neutral-600'>Job Seekers</p> */}
                         </div>
                     </div>
                 </div>
