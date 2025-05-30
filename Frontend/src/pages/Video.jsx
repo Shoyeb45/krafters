@@ -29,6 +29,7 @@ export default function Video() {
         console.log(videoUrl);
         (async () => {
             try {
+                console.log(mlBackendUrl);
                 const response = await fetch(mlBackendUrl + `/api/video_to_text/?url=${videoUrl}`, 
                     {
                         method: "GET"
