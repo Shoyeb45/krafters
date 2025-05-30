@@ -19,6 +19,7 @@ const DocumentsSection = () => {
   const [chatMessages, setChatMessages] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [isLoadingChat, setIsLoadingChat] = useState(false);
+  const { mlBackendUrl } = useContext(DocumentContext);
 
   const fetchAudioSummary = async () => {
     if (uploadedFiles.length === 0) return;
@@ -27,7 +28,7 @@ const DocumentsSection = () => {
     formData.append('file', uploadedFiles[0]);
 
     try {
-      const response = await axios.get('https://amangupta.live/api/get_summary_audio', {
+      const response = await axios.get(mlBackendUrl + '/api/get_summary_audio', {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -62,7 +63,7 @@ const DocumentsSection = () => {
     setCurrentQuestion('');
 
     try {
-      const response = await axios.post('https://amangupta.live/api/chat', {
+      const response = await axios.post(mlBackendUrl + '/api/chat', {
         text: text,
         question: question,
       }, {
@@ -141,7 +142,7 @@ const DocumentsSection = () => {
     });
 
     try {
-      const response = await axios.get(`amangupta.live/api/word_meaning?word=${word}`);
+      const response = await axios.get(mlBackendUrl + `/api/word_meaning?word=${word}`);
       if (response.data && response.data.meaning) {
         setWordMeaning(response.data.meaning);
       } else {
@@ -203,7 +204,7 @@ const DocumentsSection = () => {
     if (!text) return;
 
     try {
-      const response = await axios.post('https://amangupta.live/api/generate_quiz', {
+      const response = await axios.post(mlBackendUrl + '/api/generate_quiz', {
         text: text,
       }, {
         headers: {

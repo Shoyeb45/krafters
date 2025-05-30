@@ -7,14 +7,14 @@ import axios from 'axios';
 const ImportDialog = () => {
   const [isDragging, setIsDragging] = useState(false);
   const { isOpenUploadBox, setIsOpenUploadBox, uploadedFiles, setUploadedFiles, documentSummary, setDocumentSummary, text, setText, loading, setLoading } = useContext(DocumentContext);
-
+  const { mlBackendUrl } = useContext(DocumentContext);
   const fetchDocuments = async () => {
     try {
       setLoading(true);
       const formData = new FormData();
       formData.append('file', uploadedFiles[0]);
 
-      const response = await axios.post('https://amangupta.live/api/summarise_text', formData, {
+      const response = await axios.post(mlBackendUrl + '/api/summarise_text', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

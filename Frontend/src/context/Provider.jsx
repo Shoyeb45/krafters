@@ -7,7 +7,12 @@ export const DocumentContext = createContext();
 
 export const DocumentProvider = ({ children }) => {
   const [token, setToken] = useState("");
-  const [isAuthVisible, setIsAuthVisible] = useState(false); 
+  const [isAuthVisible, setIsAuthVisible] = useState(false);
+  // Local url 
+  // const backendUrl = "http://localhost:4000";
+  // const mlBackendUrl = "http://localhost:8000";
+
+  // Productoin urls
   const backendUrl = "https://amanrajgupta.me";
   const mlBackendUrl = "https://amangupta.live";
   const [isOpenUploadBox, setIsOpenUploadBox] = useState(true);
