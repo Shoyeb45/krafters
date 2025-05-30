@@ -20,7 +20,7 @@ const Auth = ({ isAuthVisible, setIsAuthVisible }) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-gradient-to-br from-bgtheme to-pink-300 bg-bgtheme backdrop-blur-sm flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md relative overflow-hidden">
         <button
           onClick={hideAuth}
@@ -146,7 +146,7 @@ const LoginForm = ({ setActiveTab, hideAuth }) => {
 
         <button
           type="submit"
-          className="w-full bg-primary hover:bg-primary/50  text-white py-3 rounded-full font-medium transition duration-200"
+          className="w-full bg-pwpurple hover:bg-indigo-500  text-white py-3 rounded-full font-medium transition duration-200"
         >
           Login
         </button>
@@ -277,7 +277,7 @@ const SignupForm = ({ setActiveTab, hideAuth }) => {
 
         <button
           type="submit"
-          className="w-full bg-primary hover:bg-primary/50 text-white py-3 rounded-full font-medium transition duration-200"
+          className="w-full bg-pwpurple hover:bg-indigo-700 text-white py-3 rounded-full font-medium transition duration-200"
         >
           Sign Up
         </button>
