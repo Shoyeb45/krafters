@@ -30,7 +30,7 @@ export default function Video() {
         (async () => {
             try {
                 console.log(mlBackendUrl);
-                const response = await fetch(mlBackendUrl + `/api/video_to_text/?url=${videoUrl}`, 
+                const response = await fetch(`https://amangupta.live/api/video_to_text/?url=${videoUrl}`, 
                     {
                         method: "GET"
                     }, {
@@ -47,7 +47,7 @@ export default function Video() {
                 setIslText(data.isl_format_text);
 
             } catch (error) {
-                console.error("Error while getting the text from youtube video\n", error);
+                console.error("Error while getting the ISL text from youtube video\n", error);
             }
         })();
         setVideoId(extractYouTubeId(videoUrl));
