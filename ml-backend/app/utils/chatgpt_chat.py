@@ -5,9 +5,9 @@ from openai import AzureOpenAI
 import re
 
 # Load environment variables or fallback to default values
-endpoint = "https://alakhaieastus2.openai.azure.com/"
+endpoint = ""
 deployment = "gpt-4.1"
-subscription_key = "304502f4c76949c084c41590b0ef4ee1"
+subscription_key = ""
 
 # Print the output in readable JSON format
 def chat_with_openAI(userPrompt: str, systemPrompt: str):
